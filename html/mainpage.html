@@ -24,12 +24,23 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/main_page.css" />
     <!-- Title -->
-    <title>GeoSearch</title>
+    <title>Geo Search</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Country Search</h1>
+      <div class="search-container">
+        <form id="form" class="form">
+            <input type="text" id="search" placeholder="Search for country..." />
+        </form>
+    </div>
+    <main id="main">
+        <div id="map" class="google-map"></div>
+    </main>
+    <script src="script.js"></script>
+        <!-- <h1>Country Search</h1>
         <input type="text" id="search-input" placeholder="Search for a country...">
         <button id="search-btn">Search</button>
         <div id="results"></div>
@@ -37,4 +48,4 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="app.js"></script>
 </body>
-</html>
+</html> -->
