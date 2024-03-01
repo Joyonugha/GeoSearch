@@ -17,39 +17,50 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="./index.html">
-        <img src="../images/Geo Logo.jpeg" alt="Geo Logo" class="d-inline-block align-top geo-logo">
-      </a>
-    </div>
- </nav>
- <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+     <div class="container-fluid">
+       <a class="navbar-brand" href="./index.html">
+         <img src="../images/Geo Logo.jpeg" alt="Geo Logo" class="d-inline-block align-top geo-logo">
+         <span>GeoSearch</span>
+       </a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarNav">
+         <ul class="navbar-nav">
+           <li class="nav-item">
+             <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="./savedsearch.html">Saved Search</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="../html/aboutme.html">About Me</a>
+           </li>
+         </ul>
+       </div>
+     </div>
+  </nav>
+  <!-- Navbar Section End () -->
+
+    <!-- Hero Section Start -->
+    <section class="hero relative">
+      <div class="hero-image">
+        <div class="hero">
+          <div class="search-wrapper">
+              <div class="input-holder">
+                  <input type="text" class="search-input" placeholder="Type to search" />
+                  <button class="search-icon"><span></span></button>
+      </div>
+    </section>
+    <!-- Hero Section End -->
+  <div class="container">
     <div class="search-container">
       <!-- Search input -->
       <input id="searchInput" class="controls" type="text" placeholder="Enter a location">
       <!-- Search button -->
       <button id="searchBtn" class="btn btn-primary">Search</button>
     </div>
-    <div
-          class="collapse navbar-collapse justify-content-end"
-          id="navbarNav"
-        >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./index.html"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./savedsearch.html"
-                >Saved Search</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../html/aboutme.html">About Me</a>
-            </li>
-          </ul>
     <main id="main">
       <!-- Google map -->
       <div id="map" class="google-map"></div>
@@ -67,7 +78,7 @@
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
  <!-- Google Maps JavaScript API with your API Key -->
- <script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDve5worgarDZDcV9Q0oaGox4MeK5GZfbU&libraries=places"></script>
  <!-- Custom JavaScript -->
  <script src="script.js"></script>
 </body>
