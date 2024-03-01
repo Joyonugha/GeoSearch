@@ -1,12 +1,15 @@
 $(document).ready(function() {
+    const API_KEY = "";
+    const BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY';";
+    const FORECAST_BASE_URL = "https://api.openweathermap.org/data/2.5/forecast";
     $('#search-btn').click(function() {
         const searchQuery = $('#search-input').val();
         if (searchQuery) {
             // Example API URL for searching countries
-            const API_URL_1 = `https://api.example.com/countries?search=${searchQuery}&api_key=API_KEY_1`;
+            const API_key = `6b6bcd5112mshda0fa28d640258cp123af2jsn6c8b9b64900d`;
             
             // Example API URL for getting country details
-            const API_URL_2 = `https://api.example.com/countries/details?country=${searchQuery}&api_key=API_KEY_2`;
+            const API_Key2 = `https://api.example.com/countries/details?country=${searchQuery}&api_key=API_KEY_2`;
             
             // Fetch country data
             $.ajax({
