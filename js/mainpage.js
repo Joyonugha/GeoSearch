@@ -1,85 +1,111 @@
-// Initialize the map
-function initMap() {
-    // The location of the map
-    const defaultLocation = { lat: 40.748817, lng: -73.985428 }; // Example: New York City
-
-    // The map, centered at the default location
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 10,
-        center: defaultLocation,
-    });
-
-    // The marker, positioned at the default location
-    const marker = new google.maps.Marker({
-        position: defaultLocation,
-        map: map,
-    });
-
-    // Create the search box and link it to the UI element.
-    const input = document.getElementById("searchInput");
-    const searchBox = new google.maps.places.SearchBox(input);
-
-    // Bias the SearchBox results towards the current map's viewport.
-    map.addListener("bounds_changed", () => {
-        searchBox.setBounds(map.getBounds());
-    });
-
-    // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-    searchBox.addListener("places_changed", () => {
-        const places = searchBox.getPlaces();
-
-        if (places.length == 0) {
-            return;
-        }
-
-        // For each place, get the icon, name, and location.
-        const bounds = new google.maps.LatLngBounds();
-        places.forEach((place) => {
-            if (!place.geometry) {
-                console.log("Returned place contains no geometry");
-                return;
-            }
-
-            // Create a marker for each place.
-            marker.setPosition(place.geometry.location);
-
-            if (place.geometry.viewport) {
-                // Only geocodes have viewport.
-                bounds.union(place.geometry.viewport);
-            } else {
-                bounds.extend(place.geometry.location);
-            }
+document.addEventListener("DOMContentLoaded", function () {
+document.getElementById('searchButton').addEventListener('click', function() {
+    var searchInput = document.querySelector('.search-input').value;
+    var searchService = new google.maps.places.PlacesService(document.createElement('div'));
+    searchService.textSearch({
+        query: searchInput,
+    }, function(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            console.log(results); // Process the results here
+            // Example: Display the first result's name
+            if (results[0]) {
+                console.log(results[0].name);
+            }};
         });
-        map.fitBounds(bounds);
-
-        // Display the information of the selected place
-        displayPlaceInfo(places[0]);
     });
-}
+});
 
-// Display the information of the selected place
-function displayPlaceInfo(place) {
-    document.getElementById("location").textContent = place.formatted_address;
-    document.getElementById("lat").textContent = place.geometry.location.lat();
-    document.getElementById("lon").textContent = place.geometry.location.lng();
-    // Note: The postal code and country are not directly available from the place object.
-    // You might need to use a different API or additional processing to get this information.
-}
+document.getElementById('savesearchButton').addEventListener('click', function() {
+    var searchInput = document.querySelector('.search-input').value;
+    var savedSearches = localStorage.getItem('savedSearches');
+    savedSearches = savedSearches ? JSON.parse(savedSearches) : [];
+    savedSearches.push(searchInput);
+    localStorage.setItem('savedSearches', JSON.stringify(savedSearches));
+    // Optionally, display the saved searches in your UI
+});
 
-// Load the Google Maps JavaScript API
-function loadScript() {
-    const script = document.createElement("script");
-    script.src = "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places";
-    script.async = true;
-    script.defer = true;
-    script.addEventListener("load", () => {
-        initMap();
-    });
-    document.head.appendChild(script);
-}
+// Initialize the map
+// function initMap() {
+//     // The location of the map
+//     const defaultLocation = { lat: 40.748817, lng: -73.985428 }; // Example: New York City
 
-window.onload = loadScript;
+//     // The map, centered at the default location
+//     const map = new google.maps.Map(document.getElementById("map"), {
+//         zoom: 10,
+//         center: defaultLocation,
+//     });
+
+//     // The marker, positioned at the default location
+//     const marker = new google.maps.Marker({
+//         position: defaultLocation,
+//         map: map,
+//     });
+
+//     // Create the search box and link it to the UI element.
+//     const input = document.getElementById("searchInput");
+//     const searchBox = new google.maps.places.SearchBox(input);
+
+//     // Bias the SearchBox results towards the current map's viewport.
+//     map.addListener("bounds_changed", () => {
+//         searchBox.setBounds(map.getBounds());
+//     });
+
+//     // Listen for the event fired when the user selects a prediction and retrieve
+//     // more details for that place.
+//     searchBox.addListener("places_changed", () => {
+//         const places = searchBox.getPlaces();
+
+//         if (places.length == 0) {
+//             return;
+//         }
+
+//         // For each place, get the icon, name, and location.
+//         const bounds = new google.maps.LatLngBounds();
+//         places.forEach((place) => {
+//             if (!place.geometry) {
+//                 console.log("Returned place contains no geometry");
+//                 return;
+//             }
+
+//             // Create a marker for each place.
+//             marker.setPosition(place.geometry.location);
+
+//             if (place.geometry.viewport) {
+//                 // Only geocodes have viewport.
+//                 bounds.union(place.geometry.viewport);
+//             } else {
+//                 bounds.extend(place.geometry.location);
+//             }
+//         });
+//         map.fitBounds(bounds);
+
+//         // Display the information of the selected place
+//         displayPlaceInfo(places[0]);
+//     });
+// }
+
+// // Display the information of the selected place
+// function displayPlaceInfo(place) {
+//     document.getElementById("location").textContent = place.formatted_address;
+//     document.getElementById("lat").textContent = place.geometry.location.lat();
+//     document.getElementById("lon").textContent = place.geometry.location.lng();
+//     // Note: The postal code and country are not directly available from the place object.
+//     // You might need to use a different API or additional processing to get this information.
+// }
+
+// // Load the Google Maps JavaScript API
+// function loadScript() {
+//     const script = document.createElement("script");
+//     script.src = "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places";
+//     script.async = true;
+//     script.defer = true;
+//     script.addEventListener("load", () => {
+//         initMap();
+//     });
+//     document.head.appendChild(script);
+// }
+
+// window.onload = loadScript;
 
 
 
