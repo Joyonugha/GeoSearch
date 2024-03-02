@@ -48,7 +48,26 @@ body {
     height: 100%;
     z-index: -1;
   }
+  .todayplacesearch {
+    padding-top: 30px;
+  }
+  .todaytopsearchcards {
+    background-color: antiquewhite;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid #373737;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
   
+  .todaytopsearch {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1b1b1c;
+    font-style: italic;
+  }
+
 /* Search area CSS */
 
   .search-wrapper {
@@ -66,7 +85,7 @@ body {
     cursor: pointer;
     transition: all 0.3s ease-in-out; */
   /* } */
-  .search-icon span {
+  .search-icon span { /* credit for background image and styling href="https://www.learningrobo.com/"*/
     width: 22px;
     height: 22px;
     display: inline-block;
