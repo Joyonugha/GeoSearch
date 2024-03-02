@@ -67,11 +67,8 @@ body {
     color: #1b1b1c;
     font-style: italic;
   }
-/*update the ID Place1, place2, place3 and place4 */
-#place1,
-#place2,
-#place3,
-#place4 {
+/*updates the ID Place1, place2, place3 and place4 */
+#place1,#place2,#place3,#place4 {
   margin: 0;
   font-size: 1.5rem;
   border: 1px solid #090909;
@@ -82,12 +79,19 @@ body {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-
+#place1 img,#place2 img,#recipe3 img,#recipe4 img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 25px;
+  border: 2px solid #d28bd7;
+  box-sizing: border-box;
+}
 
 /* Search area CSS */
 
   .search-wrapper {
-    position: absolute;
+    /* position: absolute; */
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
@@ -110,7 +114,88 @@ body {
     transform: rotate(45deg);
     transition: all .4s cubic-bezier(0.650, -0.600, 0.240, 1.650);
   }
-  .search-icon span::before,
+
+  /* Ensure the input-holder uses Flexbox for layout */
+.search-wrapper .input-holder {
+    display: flex;
+    justify-content: space-between; /* Aligns children (input and buttons) horizontally with space between */
+    align-items: center; /* Centers children vertically */
+    height: 50px;
+    width: 450px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 50px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Correct the search-input styles to position correctly within the flex container */
+.search-input {
+    flex-grow: 1; /* Allows the input to take up remaining space */
+    padding: 0px 70px 0 20px; /* Adjust padding as needed */
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #FFF;
+}
+.search-btn {
+    pointer-events: auto; /* Ensures the button is clickable */
+    cursor: pointer; /* Changes the cursor to a pointer when hovering over the button */
+}
+
+/* Optional: Additional styling for the buttons */
+.search-btn {
+    background-color: #09c3db; /* Example background color */
+    color: #FFF; /* Text color */
+    border: none; /* Removes default border */
+    padding: 10px 20px; /
+}
+
+/* Style for the search and save search buttons */
+.btn-primary {
+    background-color: blue; /* Example background color */
+    color: #FFF; /* Text color */
+    border: none; /* Removes default border */
+    padding: 10px 20px; /* Adjust padding as needed */
+    cursor: pointer; /* Indicates the element is clickable */
+}
+
+/* Corrected search-icon span styles for both buttons */
+.search-icon span {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+    position: relative;
+    transform: rotate(45deg);
+    transition: all .4s cubic-bezier(0.650, -0.600, 0.240, 1.650);
+}
+
+.search-icon span::before,
+.search-icon span::after {
+    position: absolute;
+    content: '';
+}
+
+.search-icon span::before {
+    width: 4px;
+    height: 11px;
+    left: 9px;
+    top: 18px;
+    border-radius: 50px;
+    background: #09c3db;
+}
+
+.search-icon span::after {
+    width: 14px;
+    height: 14px;
+    left: 0px;
+    top: 0px;
+    border-radius: 50px;
+    border: 4px solid #09c3db;
+}
+  /* .search-icon span::before,
   .search-icon span::after {
     position: absolute;
     content: '';
@@ -164,7 +249,7 @@ body {
   .search-wrapper .input-holder .search-input {
     opacity: 1;
     transform: translate(0, 10px);
-  }
+  } */
 
   /* .hero {
     position: relative;
