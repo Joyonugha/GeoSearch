@@ -29,7 +29,7 @@
        <div class="collapse navbar-collapse" id="navbarNav">
          <ul class="navbar-nav">
            <li class="nav-item">
-             <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+             <a class="nav-link active" aria-current="page" href="./mainpage.html">Home</a>
            </li>
            <li class="nav-item">
              <a class="nav-link" href="./savedsearch.html">Saved Search</a>
@@ -41,6 +41,74 @@
        </div>
      </div>
   </nav>
+  <!-- Offcanvas Structure for Screen Sizes Less Than 1600px -->
+  <nav
+  class="navbar navbar-dark bg-dark fixed-top navbar-expand-xl d-xxl-none"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="./index.html">
+      <img
+        src="./assets/images/RecipeHub_logo1.png"
+        alt="RecipeHubLogo"
+        class="d-inline-block align-top"
+      />
+      <span>RecipeHub</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasDarkNavbar"
+      aria-controls="offcanvasDarkNavbar"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      class="offcanvas offcanvas-end text-bg-dark"
+      tabindex="-1"
+      id="offcanvasDarkNavbar"
+      aria-labelledby="offcanvasDarkNavbarLabel"
+    >
+      <div class="offcanvas-header">
+        <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+          RecipeHub
+        </h3>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="./index.html"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./assets/html/saved_recipes.html"
+              >Saved Recipes</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./assets/html/aboutme.html"
+              >About Us</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- Navbar Section End () -->
+
   <!-- Navbar Section End () -->
 
     <!-- Hero Section Start -->
@@ -49,19 +117,19 @@
         <div class="hero">
           <div class="search-wrapper">
               <div class="input-holder">
-                  <input type="text" class="search-input" placeholder="Type to search" />
-                  <button class="search-icon"><span></span></button>
+                  <button id="searchButton" class="btn btn-primary" class="search-icon"><span>Search</span></button>
+                  <input type="text" class="search-input" placeholder="Enter a location" />
       </div>
-      <div class="credit">Made with <span style="color:tomato;font-size:20px;">❤</span> by <a  href="https://www.learningrobo.com/">Learning Robo</a></div>
+      <!-- <div class="credit">Made with <span style="color:tomato;font-size:20px;">❤</span> by <a  href="https://www.learningrobo.com/">Learning Robo</a></div> -->
   </div>
     </section>
     <!-- Hero Section End -->
-  <div class="container">
+  <!-- <div class="container">
     <div class="search-container">
-      <!-- Search input -->
-      <input id="searchInput" class="controls" type="text" placeholder="Enter a location">
-      <!-- Search button -->
-      <button id="searchBtn" class="btn btn-primary">Search</button>
+      <!- Search input -->
+      <!-- <input id="searchInput" class="controls" type="text" placeholder="Enter a location">
+      <!- Search button -->
+      <!-- <button id="searchBtn" class="btn btn-primary">Search</button> --> 
     </div>
     <main id="main">
       <!-- Google map -->
