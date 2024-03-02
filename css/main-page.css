@@ -67,6 +67,22 @@ body {
     color: #1b1b1c;
     font-style: italic;
   }
+/*update the ID Place1, place2, place3 and place4 */
+#place1,
+#place2,
+#place3,
+#place4 {
+  margin: 0;
+  font-size: 1.5rem;
+  border: 1px solid #090909;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 1rem;
+  margin-bottom: 10px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
 
 /* Search area CSS */
 
