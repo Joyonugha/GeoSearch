@@ -47,6 +47,17 @@ body {
     height: 100%;
     z-index: -1;
   }
+  .table thead {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  .subtitle {
+    color: #f4f4f4;
+    
+  }
 
 /* Style the search-wrapper to center its contents */
 .search-wrapper {

@@ -35,6 +35,9 @@ body {
   font-style: italic;
   border-bottom: 0.3rem solid #1b1b1c;
 }
+.navlist-right {
+    margin-left: auto; /* Pushes the div to the right */
+}
 
   /* Hero Section CSS */
  
