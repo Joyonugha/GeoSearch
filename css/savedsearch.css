@@ -37,19 +37,15 @@ body {
   /* Navbar section styles End */
   
   /* Hero Section CSS */
-  .hero {
-    position: relative;
-    height: 400px;
-    overflow: hidden;
-  }
-  
   .hero-image {
-    background-image: url("https://cdn.pixabay.com/photo/2021/09/26/20/49/world-6658881_960_720.jpg");
-    background-size: cover;
+    content: "";
+    background-image: linear-gradient(rgba(225,246,255, 0.2),rgba(0,171,240, 0.2)),url("https://cdn.pixabay.com/photo/2021/09/26/20/49/world-6658881_960_720.jpg");
     background-position: center;
+    background-size: cover;
+    position: absolute;
     width: 100%;
     height: 100%;
-    border-bottom: 50px;
+    z-index: -1;
   }
 
 /* Style the search-wrapper to center its contents */

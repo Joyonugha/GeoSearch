@@ -100,27 +100,11 @@ body {
     z-index: 1; /* Ensure it's above the .hero-image */
    }
    
-   /* Ensure the input-holder and its children are clickable */
+   /* Ensures the input-holder and its children are clickable */
    .search-wrapper .input-holder,
    .search-wrapper .input-holder * {
-    z-index: 1; /* Ensure these are above the .hero-image */
+    z-index: 1; /* Ensures these are above the .hero-image */
    }
-   
-   /* Style for the search input and buttons */
-   .search-input {
-    /* Add your styling here */
-   }
-   
-   .btn-primary {
-    /* Add your styling here */
-   }
-
-  /* .search-wrapper {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-  }
   .search-icon {
     width: 50px;
     height: 50px;
@@ -131,19 +115,19 @@ body {
     transition: all 0.3s ease-in-out;
   }
   .search-icon span{   /* credit for background image and styling href="https://www.learningrobo.com/" */
-    /* width: 50px;
+    width: 50px;
     height: 22px;
     display: inline-block;
     vertical-align: middle;
     position: relative;
     transform: rotate(45deg);
     transition: all .4s cubic-bezier(0.650, -0.600, 0.240, 1.650);
-  } */
+  } 
   /* Ensure the input-holder uses Flexbox for layout */
 
-  /* .search-icon span::after {
+  .search-icon span::after {
     position: absolute;
-    content: '';
+    content: 'Search';
   }
   .search-icon span::before {
     width: 4px;
@@ -200,8 +184,10 @@ body {
     align-items: flex-end;
     margin-left: auto;
   } 
-  */
 
+  #main {
+    visibility: hidden;
+}
   /* .hero {
     position: relative;  /* .search-icon span::before,
     height: 400px;

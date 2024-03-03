@@ -115,12 +115,19 @@
     <section class="hero relative">
       <div class="hero-image">
         <div class="hero">
-          <div class="search-wrapper">
-              <div class="input-holder">
-                <input type="text" class="search-input" class="controls" type="text" placeholder="Enter a location" />
-                  <button id="searchButton submit" class="btn btn-primary" class="search-icon"><span>Search</span></button>
-                  <button id="savesearchButton submit" class="btn btn-primary" class="save search-icon"><span>Save Search</span></button>
-      </section>
+    </section>
+    <div class="search-wrapper">
+      <div class="input-holder">
+        <div class="d-flex flex-column align-items-center">
+      <!-- Search Input -->
+        <input type="text" class="form-control mb-" placeholder="Enter a location" id="searchInput">
+    </div>
+    <div class="d-flex justify-content-between"></div>
+    <button id="searchButton" class="btn btn-primary mb-" onclick="searchFunction()">Search</button>
+    <!-- Save Search Button -->
+    <button id="saveSearchButton" class="btn btn-secondary" onclick="saveSearchFunction()">Save Search</button>
+  </div>
+        
       </div>
 <!--Hero Section End-->
 <!--Top search for today start-->
