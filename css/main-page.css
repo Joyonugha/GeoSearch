@@ -182,12 +182,17 @@ body {
     opacity: 1;
     transform: translate(0, 10px);
     cursor: pointer; 
+    background: antiquewhite; 
+
   } 
-  #searchButton, #savesearchButton {
+  #searchButton, #saveSearchButton {
     align-items: flex-end;
     margin-left: auto;
+    background: #09c3db;
   } 
-
+.form-control {
+    background: antiquewhite; 
+}
   #main {
     visibility: hidden;
 }
