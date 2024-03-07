@@ -1,98 +1,114 @@
-document.addEventListener("DOMContentLoaded", function () {
-
-function fetchCountryInfo(country) {
-    const query = "";
+document.getElementById('searchButton').addEventListener("click", function () {
+  function fetchCountryInfo(country) {
+    // const query = "";
     const apiKey = "6b6bcd5112mshda0fa28d640258cp123af2jsn6c8b9b64900d";
-    const url = "https://rest-countries10.p.rapidapi.com/country/" + query;
+    const url = `https://rest-countries10.p.rapidapi.com${country}`;
     const options = {
-        method: "GET",
-        headers: {
-            "X-RapidAPI-Key": apiKey,
-            "X-RapidAPI-Host": "rest-countries10.p.rapidapi.com",
-  },
-};
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": apiKey,
+        "X-RapidAPI-Host": "rest-countries10.p.rapidapi.com",
+      },
+    };
 
-fetch(url, options)
-  .then(function (response) {
-    return response.json();
-  })
-
-  .then(function (data) {
-    console.log(data);
-    console.log(data[0].name.shortnamelowercase);
-    document.getElementById("mainpage").textContent =
-      data[0].name.shortnamelowercase;
-  })
-
-  .catch(function (err) {
-    console.error(err);
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // Assuming you want to display the common name of the country
+        document.getElementById("mainpage.html").textContent =
+          data[0].name.common;
+      })
+      .catch((error) => console.error("Error:", error));
+  }
+  var searchInput = document.getElementById('searchInput').value 
+  document.addEventListener("DOMContentLoaded", function () {
+    const countryName = "Florida"; // Example country name
+    fetchCountryInfo(countryName);
   });
-})
+});
+// fetch(url, options)
+//   .then(function (response) {
+//     return response.json();
+//   })
+
+//   .then(function (data) {
+//     console.log(data);
+//     console.log(data[0].name.shortnamelowercase);
+//     document.getElementById("mainpage.html").textContent =
+//       data[0].name.shortnamelowercase;
+//   })
 
 //function to fetch Geolocation data
 function fetchGeolocationData(location) {
-    var requestOptions = {
-    method: 'GET',
- };
- 
- fetch("https://api.geoapify.com/v2/places?categories=commercial.supermarket&filter=rect%3A10.716463143326969%2C48.755151258420966%2C10.835314015356737%2C48.680903341613316&limit=20&apiKey=e158f97c6a454612a12f9bfd24254777", requestOptions)
- .then(response => response.json())
- .then(result => console.log(result))
- .catch(error => console.log('error', error));
+  var requestOptions = {
+    method: "GET",
+  };
 
-//display the full address 
+  fetch(
+    "https://api.geoapify.com/v2/places?categories=commercial.supermarket&filter=rect%3A10.716463143326969%2C48.755151258420966%2C10.835314015356737%2C48.680903341613316&limit=20&apiKey=e158f97c6a454612a12f9bfd24254777",
+    requestOptions
+  )
+    .then((response) => response.json())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
+}
+//display the full address
 document.addEventListener("DOMContentLoaded", function () {
-    const countryName = "Mexico"; // Example country name
-   
-    fetchCountryInfo(countryName)
-       .then(countryData => {
-         console.log(countryData.name.common);
-         document.getElementById("mainpage").textContent = countryData.name.common;
-   
-         // Assuming you want to find a supermarket in Mexico
-         // For demonstration, let's use Mexico City as the location
-         return fetchGeolocationData("Mexico City");
-       })
-       .then(locationData => {
-         console.log(locationData);
-         document.getElementById("address").textContent = locationData.properties.formatted;
-       })
-       .catch(error => console.error('Error:', error));
-   });
+  const countryName = "Mexico"; // Example country name
 
-   //function to search information entered
-   function searchFunction() {
-    const searchInput = document.getElementById('searchInput').value;
-    // Perform the search using the searchInput value
-    // For example, using Google Places API or another search service
-    console.log("Searching for:", searchInput);
+  fetchCountryInfo(countryName)
+    .then((countryData) => {
+      console.log(countryData.name.common);
+      document.getElementById("mainpage").textContent = countryData.name.common;
 
+      //Just assuming I would like to find a particular country
+      return fetchGeolocationData("Mexico City");
+    })
+    .then((locationData) => {
+      console.log(locationData);
+      document.getElementById("address").textContent =
+        locationData.properties.formatted;
+    })
+    .catch((error) => console.error("Error:", error));
+});
+
+//function to search information entered
+function searchFunction() {
+  const searchInput = document.getElementById("searchInput").value;
+  // Perform the search using the searchInput value
+  // For example, using Google Places API or another search service
+  console.log("Searching for:", searchInput);
+//   fetchcountryinfo {
+//     searchInput
+  }
 //function to save search to local storage
 function saveSearchFunction() {
-    const searchInput = document.getElementById('searchInput').value;
-    const savedSearches = localStorage.getItem('savedSearches');
-    const savedSearchesArray = savedSearches ? JSON.parse(savedSearches) : [];
-    savedSearchesArray.push(searchInput);
-    localStorage.setItem('savedSearches', JSON.stringify(savedSearchesArray));
-    console.log("Search saved:", searchInput);
+  const searchInput = document.getElementById("searchInput").value;
+  const savedSearches = localStorage.getItem("savedSearches");
+  const savedSearchesArray = savedSearches ? JSON.parse(savedSearches) : [];
+  savedSearchesArray.push(searchInput);
+  localStorage.setItem("savedSearches", JSON.stringify(savedSearchesArray));
+  console.log("Search saved:", searchInput);
 }
 //function to save display search
 function displaySavedSearches() {
-    const savedSearches = localStorage.getItem('savedSearches');
-    const savedSearchesArray = savedSearches ? JSON.parse(savedSearches) : [];
-    const savesearchArea = document.getElementById('savesearchArea'); // Ensure you have an element with this ID
-    savesearchArea.innerHTML = ''; // Clear previous searches
-    savedSearchesArray.forEach(search => {
-        const listItem = document.createElement('li');
-        listItem.textContent = search;
-        savesearchArea.appendChild(listItem);
-    });
+  const savedSearches = localStorage.getItem("savedSearches");
+  const savedSearchesArray = savedSearches ? JSON.parse(savedSearches) : [];
+  const savesearchArea = document.getElementById("savesearchArea"); // Ensure you have an element with this ID
+  savesearchArea.innerHTML = ""; // Clear previous searches
+  savedSearchesArray.forEach((search) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = search;
+    savesearchArea.appendChild(listItem);
+  });
 }
 
 // Call this function when the page loads to display any saved searches
-document.addEventListener('DOMContentLoaded', displaySavedSearches);
+document.addEventListener("DOMContentLoaded", displaySavedSearches);
 
-
+saveSearchFunction();
+fetchCountryInfo();
 
 // document.getElementById('searchButton').addEventListener('click', function() {
 //     var searchInput = document.querySelector('.search-input').value;
@@ -202,8 +218,6 @@ document.addEventListener('DOMContentLoaded', displaySavedSearches);
 
 // window.onload = loadScript;
 
-
-
 // document.addEventListener("DOMContentLoaded", function() {
 //     const form = document.getElementById("form");
 //     const searchInput = document.getElementById("search");
@@ -214,7 +228,7 @@ document.addEventListener('DOMContentLoaded', displaySavedSearches);
 //         const searchTerm = searchInput.value;
 //         // Replace "YOUR_API_KEY" with your actual API key
 //         const googleApiKey = "AIzaSyDve5worgarDZDcV9Q0oaGox4MeK5GZfbU";
-        
+
 //         // Make an API request to Google Geocoding API
 //         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchTerm}&key=${googleApiKey}`)
 //             .then(response => {
@@ -246,39 +260,6 @@ document.addEventListener('DOMContentLoaded', displaySavedSearches);
 //     });
 // });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // // $(document).ready(function() {
 // //     const API_KEY = "AIzaSyDve5worgarDZDcV9Q0oaGox4MeK5GZfbU";
 // //     const BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY';";
@@ -288,10 +269,10 @@ document.addEventListener('DOMContentLoaded', displaySavedSearches);
 // //         if (searchQuery) {
 // //             // Example API URL for searching countries
 // //             const API_key = `6b6bcd5112mshda0fa28d640258cp123af2jsn6c8b9b64900d`;
-            
+
 // //             // Example API URL for getting country details
 // //             const API_Key2 = `https://api.example.com/countries/details?country=${searchQuery}&api_key=API_KEY_2`;
-            
+
 // //             // Fetch country data
 // //             $.ajax({
 // //                 url: API_URL_1,
