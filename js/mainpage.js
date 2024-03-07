@@ -1,28 +1,99 @@
 document.addEventListener("DOMContentLoaded", function () {
-document.getElementById('searchButton').addEventListener('click', function() {
-    var searchInput = document.querySelector('.search-input').value;
-    var searchService = new google.maps.places.PlacesService(document.createElement('div'));
-    searchService.textSearch({
-        query: searchInput,
-    }, function(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-            console.log(results); // Process the results here
-            // Example: Display the first result's name
-            if (results[0]) {
-                console.log(results[0].name);
-            }};
-        });
-    });
-});
 
-document.getElementById('savesearchButton').addEventListener('click', function() {
-    var searchInput = document.querySelector('.search-input').value;
-    var savedSearches = localStorage.getItem('savedSearches');
-    savedSearches = savedSearches ? JSON.parse(savedSearches) : [];
-    savedSearches.push(searchInput);
-    localStorage.setItem('savedSearches', JSON.stringify(savedSearches));
-    // Optionally, display the saved searches in your UI
-});
+function fetchCountryInfo(country) {
+const query = "Mexico";
+const apiKey = "6b6bcd5112mshda0fa28d640258cp123af2jsn6c8b9b64900d";
+
+const url = "https://rest-countries10.p.rapidapi.com/country/" + query;
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": apiKey,
+    "X-RapidAPI-Host": "rest-countries10.p.rapidapi.com",
+  },
+};
+
+fetch(url, options)
+  .then(function (response) {
+    return response.json();
+  })
+
+  .then(function (data) {
+    console.log(data);
+    console.log(data[0].name.shortnamelowercase);
+    document.getElementById("mainpage").textContent =
+      data[0].name.shortnamelowercase;
+  })
+
+  .catch(function (err) {
+    console.error(err);
+  });
+})
+
+//function to fetch Geolocation data
+function fetchGeolocationData(location) {
+var requestOptions = {
+    method: 'GET',
+  };
+  
+  fetch("https://api.geoapify.com/v2/places?categories=commercial.supermarket&filter=rect%3A10.716463143326969%2C48.755151258420966%2C10.835314015356737%2C48.680903341613316&limit=20&apiKey=e158f97c6a454612a12f9bfd24254777", requestOptions)
+    .then(response => response.json())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+//display the full address 
+document.addEventListener("DOMContentLoaded", function () {
+    const countryName = "Mexico"; // Example country name
+   
+    fetchCountryInfo(countryName)
+       .then(countryData => {
+         console.log(countryData.name.common);
+         document.getElementById("mainpage").textContent = countryData.name.common;
+   
+         // Assuming you want to find a supermarket in Mexico
+         // For demonstration, let's use Mexico City as the location
+         return fetchGeolocationData("Mexico City");
+       })
+       .then(locationData => {
+         console.log(locationData);
+         document.getElementById("address").textContent = locationData.properties.formatted;
+       })
+       .catch(error => console.error('Error:', error));
+   });
+
+   function searchFunction() {
+    const searchInput = document.getElementById('searchInput').value;
+    // Perform the search using the searchInput value
+    // For example, using Google Places API or another search service
+    console.log("Searching for:", searchInput);
+
+
+
+
+// document.getElementById('searchButton').addEventListener('click', function() {
+//     var searchInput = document.querySelector('.search-input').value;
+//     var searchService = new google.maps.places.PlacesService(document.createElement('div'));
+//     searchService.textSearch({
+//         query: searchInput,
+//     }, function(results, status) {
+//         if (status == google.maps.places.PlacesServiceStatus.OK) {
+//             console.log(results); // Process the results here
+//             // Example: Display the first result's name
+//             if (results[0]) {
+//                 console.log(results[0].name);
+//             }};
+//         });
+//     });
+// });
+
+// document.getElementById('savesearchButton').addEventListener('click', function() {
+//     var searchInput = document.querySelector('.search-input').value;
+//     var savedSearches = localStorage.getItem('savedSearches');
+//     savedSearches = savedSearches ? JSON.parse(savedSearches) : [];
+//     savedSearches.push(searchInput);
+//     localStorage.setItem('savedSearches', JSON.stringify(savedSearches));
+//     // Optionally, display the saved searches in your UI
+// });
 
 // Initialize the map
 // function initMap() {
