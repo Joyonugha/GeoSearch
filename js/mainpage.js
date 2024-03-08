@@ -21,14 +21,14 @@ document.getElementById('searchButton').addEventListener("click", function () {
       })
       .catch((error) => console.error("Error:", error));
   }
-  var countryName = $("#restcountries").text(data.name);
-  var location = $("#location").attr("href", data.location).append(countryName);
-  var postalCode = $("#postal_code").attr("src", data.postalCode);
-  var restaurant = $("#restaurant").text(data.restaurant + " in this area");
-  var latitude = $("#latitude").text(data.latitude + " of this place");
-  var longitude = $("#longitude").attr("href", data.longitude).text("of this place");
-  
-}):
+//   var countryName = $("#restcountries").text(data.name);
+//   var location = $("#location").attr("href", data.location).append(countryName);
+//   var postalCode = $("#postal_code").attr("src", data.postalCode);
+//   var restaurant = $("#restaurant").text(data.restaurant + " in this area");
+//   var latitude = $("#latitude").text(data.latitude + " of this place");
+//   var longitude = $("#longitude").attr("href", data.longitude).text("of this place");
+
+});
 //function to fetch Geolocation data
 function fetchGeolocationData(location) {
   var requestOptions = {
@@ -43,26 +43,6 @@ function fetchGeolocationData(location) {
     .then((result) => console.log(result))
     .catch((error) => console.log("error", error));
 }
-//display the full address
-// document.addEventListener("DOMContentLoaded", function () {
-//   const countryName = "Mexico"; // Example country name
-
-//   fetchCountryInfo(countryName)
-//     .then((countryData) => {
-//       console.log(countryData.name.common);
-//       document.getElementById("mainpage").textContent = countryData.name.common;
-
-//       //Just assuming I would like to find a particular country
-//       return fetchGeolocationData("Mexico City");
-//     })
-//     .then((locationData) => {
-//       console.log(locationData);
-//       document.getElementById("address").textContent =
-//         locationData.properties.formatted;
-//     })
-//     .catch((error) => console.error("Error:", error));
-// });
-
 //function to search information entered
 function searchFunction() {
   const searchInput = document.getElementById("searchInput").value;
@@ -70,7 +50,7 @@ function searchFunction() {
   // For example, using the API
   console.log("Searching for:", searchInput);
 //   fetchcountryinfo {
-//     searchInput
+
   }
 //function to save search to local storage
 function saveSearchFunction() {
@@ -87,12 +67,71 @@ function displaySavedSearches() {
   const savedSearchesArray = savedSearches ? JSON.parse(savedSearches) : [];
 //   const savesearchArea = document.getElementById("savesearchArea"); // Ensure you have an element with this ID
 //   savesearchArea.innerHTML = ""; // Clear previous searches
-//   savedSearchesArray.forEach((search) => {
-//     const listItem = document.createElement("li");
-//     listItem.textContent = search;
-//     savesearchArea.appendChild(listItem);
-//   });
+  savedSearchesArray.forEach((search) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = search;
+    savesearchArea.appendChild(listItem);
+  });
 }
+
+// Logic to display current weather data in the #today section
+        $("todaytopsearch").html(`
+            <h2>${country.name}, ${Data.sys.country}</div>
+            <p>${new Date().toLocaleString()}</p>
+            <p>Location: ${data.main.location}°C</p>
+            <p>Postal Code: ${data.main.postal.Code}</p>
+            <p>Restaurants: ${data.restaurants} m/s</p>
+            <p>Longitude: ${data.longitude} m/s</p>
+            <p>Latitude: ${data.latitude} m/s</p>
+        `);
+// Display results of search
+            results.forEach(result => {
+                    const formattedAddress = result.formatted_address;
+                    const latitude = result.geometry.location.lat;
+                    const longitude = result.geometry.location.lng;
+                    const button = document.createElement("button");
+                    button.textContent = formattedAddress;
+                    button.classList.add("btn", "btn-primary", "mb-2");
+                    button.addEventListener("click", function() {
+                        // Handle button click, for example, display latitude and longitude
+                        alert(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                    });
+                    resultsDiv.appendChild(button);
+                });
+
+//function to display today's top search
+document.addEventListener("DOMContentLoaded", function () {
+    fetchTopSearchOfToday().then(topSearch => {
+        const todayTopSearchElement = document.getElementById("todayTopSearch");
+        todayTopSearchElement.innerHTML = `
+        <h2>${topSearch.name}, ${topSearch.countryCode}</h2>
+        <p>Searches today: ${topSearch.searchCount}</p>
+                        `;
+                    }).catch(error => {
+                        console.error("Error fetching top search of today:", error);
+                    });
+
+
+// Function to add the searched city to the history list
+function addToHistory(countries) {
+    $("#history").prepend(`
+    <a href="#" class="list-group-item list-group-item-action">${country}</a>
+        `);
+    searchHistory.push(city);
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+                });
+            }
+// Event listener for the search form
+    $("#search-form").submit(function (event) {
+        event.preventDefault();
+        const city = $("#search-input").val().trim();
+    
+        if (city !== "") {
+            getCurrentWeather(city);
+            getForecast(city);
+            addToHistory(city);
+        }
+    });
 
 // Call this function when the page loads to display any saved searches
 document.addEventListener("DOMContentLoaded", displaySavedSearches);
@@ -228,20 +267,7 @@ saveSearchFunction();
 //                 // Clear previous results
 //                 resultsDiv.innerHTML = "";
 
-//                 // Display results
-//                 results.forEach(result => {
-//                     const formattedAddress = result.formatted_address;
-//                     const latitude = result.geometry.location.lat;
-//                     const longitude = result.geometry.location.lng;
-//                     const button = document.createElement("button");
-//                     button.textContent = formattedAddress;
-//                     button.classList.add("btn", "btn-primary", "mb-2");
-//                     button.addEventListener("click", function() {
-//                         // Handle button click, for example, display latitude and longitude
-//                         alert(`Latitude: ${latitude}, Longitude: ${longitude}`);
-//                     });
-//                     resultsDiv.appendChild(button);
-//                 });
+//                 
 //             })
 //             .catch(error => {
 //                 console.error("Error fetching data:", error);
