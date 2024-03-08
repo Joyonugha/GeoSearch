@@ -13,8 +13,7 @@
     <!-- Title -->
     <title>Geo Search</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDve5worgarDZDcV9Q0oaGox4MeK5GZfbU&libraries=places"></script>
-    <link rel="stylesheet" href="styles.css">
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDve5worgarDZDcV9Q0oaGox4MeK5GZfbU&libraries=places"></script> -->
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -148,7 +147,7 @@
     </div>
     <div class="search-wrapper">
       <input type="text" class="form-control mb-1" placeholder="Enter a location" id="searchInput">
-      <button id="searchButton" class="btn btn-primary mb-" >Search</button>
+      <button id="searchButton" class="btn btn-primary mb-" onclick="searchFunction ()">Search</button>
     <button id="saveSearchButton" class="btn btn-secondary" onclick="saveSearchFunction()">Save Search</button>
 
     </div>
@@ -203,13 +202,13 @@
       <!-- <button id="searchBtn" class="btn btn-primary">Search</button> --> 
     </div>
     <main id="main">
-      <!-- Google map -->
-      <div id="map" class="google-map"></div>
+      <!-- restcountries -->
+      <div id="countries" class="restcountries"></div>
       <!-- Display geolocation data -->
       <ul class="geo-data mt-3">
           <li>Full Address: <span id="location"></span></li>
           <li>Postal Code: <span id="postal_code"></span></li>
-          <li>Country: <span id="country"></span></li>
+          <li>Restaurant: <span id="restaurant"></span></li>
           <li>Latitude: <span id="lat"></span></li>
           <li>Longitude: <span id="lon"></span></li>
       </ul>

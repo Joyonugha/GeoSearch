@@ -2,7 +2,7 @@ document.getElementById('searchButton').addEventListener("click", function () {
   function fetchCountryInfo(country) {
     // const query = "";
     const apiKey = "6b6bcd5112mshda0fa28d640258cp123af2jsn6c8b9b64900d";
-    const url = `https://rest-countries10.p.rapidapi.com${country}`;
+    const url = `https://rest-countries10.p.rapidapi.com/country/${country}`;
     const options = {
       method: "GET",
       headers: {
@@ -21,24 +21,14 @@ document.getElementById('searchButton').addEventListener("click", function () {
       })
       .catch((error) => console.error("Error:", error));
   }
-  var searchInput = document.getElementById('searchInput').value 
-  document.addEventListener("DOMContentLoaded", function () {
-    const countryName = "Florida"; // Example country name
-    fetchCountryInfo(countryName);
-  });
-});
-// fetch(url, options)
-//   .then(function (response) {
-//     return response.json();
-//   })
-
-//   .then(function (data) {
-//     console.log(data);
-//     console.log(data[0].name.shortnamelowercase);
-//     document.getElementById("mainpage.html").textContent =
-//       data[0].name.shortnamelowercase;
-//   })
-
+  var countryName = $("#restcountries").text(data.name);
+  var location = $("#location").attr("href", data.location).append(countryName);
+  var postalCode = $("#postal_code").attr("src", data.postalCode);
+  var restaurant = $("#restaurant").text(data.restaurant + " in this area");
+  var latitude = $("#latitude").text(data.latitude + " of this place");
+  var longitude = $("#longitude").attr("href", data.longitude).text("of this place");
+  
+}):
 //function to fetch Geolocation data
 function fetchGeolocationData(location) {
   var requestOptions = {
@@ -54,30 +44,30 @@ function fetchGeolocationData(location) {
     .catch((error) => console.log("error", error));
 }
 //display the full address
-document.addEventListener("DOMContentLoaded", function () {
-  const countryName = "Mexico"; // Example country name
+// document.addEventListener("DOMContentLoaded", function () {
+//   const countryName = "Mexico"; // Example country name
 
-  fetchCountryInfo(countryName)
-    .then((countryData) => {
-      console.log(countryData.name.common);
-      document.getElementById("mainpage").textContent = countryData.name.common;
+//   fetchCountryInfo(countryName)
+//     .then((countryData) => {
+//       console.log(countryData.name.common);
+//       document.getElementById("mainpage").textContent = countryData.name.common;
 
-      //Just assuming I would like to find a particular country
-      return fetchGeolocationData("Mexico City");
-    })
-    .then((locationData) => {
-      console.log(locationData);
-      document.getElementById("address").textContent =
-        locationData.properties.formatted;
-    })
-    .catch((error) => console.error("Error:", error));
-});
+//       //Just assuming I would like to find a particular country
+//       return fetchGeolocationData("Mexico City");
+//     })
+//     .then((locationData) => {
+//       console.log(locationData);
+//       document.getElementById("address").textContent =
+//         locationData.properties.formatted;
+//     })
+//     .catch((error) => console.error("Error:", error));
+// });
 
 //function to search information entered
 function searchFunction() {
   const searchInput = document.getElementById("searchInput").value;
   // Perform the search using the searchInput value
-  // For example, using Google Places API or another search service
+  // For example, using the API
   console.log("Searching for:", searchInput);
 //   fetchcountryinfo {
 //     searchInput
@@ -95,20 +85,20 @@ function saveSearchFunction() {
 function displaySavedSearches() {
   const savedSearches = localStorage.getItem("savedSearches");
   const savedSearchesArray = savedSearches ? JSON.parse(savedSearches) : [];
-  const savesearchArea = document.getElementById("savesearchArea"); // Ensure you have an element with this ID
-  savesearchArea.innerHTML = ""; // Clear previous searches
-  savedSearchesArray.forEach((search) => {
-    const listItem = document.createElement("li");
-    listItem.textContent = search;
-    savesearchArea.appendChild(listItem);
-  });
+//   const savesearchArea = document.getElementById("savesearchArea"); // Ensure you have an element with this ID
+//   savesearchArea.innerHTML = ""; // Clear previous searches
+//   savedSearchesArray.forEach((search) => {
+//     const listItem = document.createElement("li");
+//     listItem.textContent = search;
+//     savesearchArea.appendChild(listItem);
+//   });
 }
 
 // Call this function when the page loads to display any saved searches
 document.addEventListener("DOMContentLoaded", displaySavedSearches);
 
 saveSearchFunction();
-fetchCountryInfo();
+// fetchCountryInfo();
 
 // document.getElementById('searchButton').addEventListener('click', function() {
 //     var searchInput = document.querySelector('.search-input').value;
